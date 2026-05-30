@@ -1,12 +1,47 @@
 ---
+import { getImage } from 'astro:assets';
+
+import pcHero from '../../assets/images/pc-hero.png';
+import tabHero from '../../assets/images/tab-hero.png';
+import spHero from '../../assets/images/sp-hero.png';
+
+const pc = await getImage({ src: pcHero, format: 'webp' });
+const tab = await getImage({ src: tabHero, format: 'webp' });
+const sp = await getImage({ src: spHero, format: 'webp' });
 ---
 <section class="hero">
   <div class="inner">
-
+    <picture class="hero-picture">
+      <source media="(max-width: 520px)" srcset={sp.src} />
+      <source media="(max-width: 890px)" srcset={tab.src} />
+      <img
+        src={pc.src}
+        alt="初代組系ラーメン麵魂力組"
+        data-hero-image
+      />
+    </picture>
   </div>
 </section>
 
 <style lang="scss">
   @use "../../styles/variables" as *;
   @use "../../styles/mixins" as *;
+
+  .hero {
+    position: relative; 
+    width: 100%;
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  .hero-picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .hero-picture img {
+    will-change: transform;
+  }
 </style>
