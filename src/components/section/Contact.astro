@@ -10,7 +10,7 @@ const telDisplay = '090-7162-4273';
       <h2 class="title">お問い合わせ</h2>
     </div>
     <div class="content">
-      <p class="lead">ご予約・お問い合わせはお電話にて承っております。<br class="break" />お気軽にお問い合わせください。</p>
+      <p class="lead">お問い合わせはお電話にて承っております。<br class="break" />お気軽にお問い合わせください。</p>
 
       <a href={`tel:${tel}`} class="tel-button">
         <Icon name="mdi:phone" class="tel-icon" />
@@ -36,7 +36,12 @@ const telDisplay = '090-7162-4273';
   }
 
   .lead {
+    font-size: clamp(0.8rem, 10vw, 1rem);
     line-height: 2;
+
+    @include sp {
+      font-size: 0.8rem;
+    }
   }
 
   .tel-button {

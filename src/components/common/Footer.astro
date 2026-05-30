@@ -1,7 +1,46 @@
 ---
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import { siteConfig } from '../../config/site';
+
+import Logo from '../../assets/images/logo2.png';
+
+const navLinks = [
+  { href: '#about', label: '当店について' },
+  { href: '#menu', label: 'お品書き' },
+  { href: '#info', label: '店舗情報' },
+  { href: '#contact', label: 'お問い合わせ' },
+];
 ---
 <footer class="footer">
   <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="/" class="footer-logo">
+        <Image src={Logo} alt={siteConfig.title} />
+      </a>
+    </div>
+
+    <nav class="footer-nav" aria-label="フッターナビゲーション">
+      <ul class="footer-nav-list">
+        {navLinks.map((link) => (
+          <li><a href={link.href} class="footer-nav-link">{link.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <ul class="footer-sns">
+      <li>
+        <a href={siteConfig.sns.x} class="footer-sns-link" target="_blank" rel="noopener noreferrer" aria-label="X">
+          <Icon name="simple-icons:x" />
+        </a>
+      </li>
+      <li>
+        <a href={siteConfig.sns.instagram} class="footer-sns-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <Icon name="simple-icons:instagram" />
+        </a>
+      </li>
+    </ul>
+
     <small class="copyright">&copy; 2026 初代組系ラーメン麵魂力組</small>
   </div>
 </footer>
@@ -9,4 +48,74 @@
 <style lang="scss">
   @use "../../styles/variables" as *;
   @use "../../styles/mixins" as *;
+
+  .footer {
+    background-color: rgba(0, 0, 0, 0.85);
+  }
+
+  .footer-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 60px 40px 40px;
+
+    @include sp {
+      padding: 48px 20px 32px;
+      gap: 28px;
+    }
+  }
+
+  .footer-logo {
+    display: block;
+    max-width: 140px;
+  }
+
+  .footer-nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px 32px;
+
+    @include sp {
+      flex-direction: column;
+      gap: 12px 24px;
+    }
+  }
+
+  .footer-nav-link {
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+
+  .footer-sns {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .footer-sns-link {
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+
+  .copyright {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.05em;
+  }
 </style>
