@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
 
 import infoBg from '../../assets/images/info-bg.jpeg';
 ---
@@ -48,6 +49,13 @@ import infoBg from '../../assets/images/info-bg.jpeg';
           <div class="info-row">
             <dt class="info-label">席数</dt>
             <dd class="info-data">9席</dd>
+          </div>
+          <div class="info-row">
+            <dt class="info-label">SNS</dt>
+            <dd class="info-data">
+              <a href="" class="sns-link" target="_blank" rel="noopener noreferrer"><Icon name="simple-icons:x" /></a>
+              <a href="https://instagram.com/..." class="sns-link" target="_blank" rel="noopener noreferrer"><Icon name="simple-icons:instagram" /></a>
+            </dd>
           </div>
         </dl>
         <figure class="info-image">
@@ -118,7 +126,8 @@ import infoBg from '../../assets/images/info-bg.jpeg';
     }
 
     .info-image {
-      max-width: 100%;
+      max-width: 400px;   /* 100% → 控えめな固定値に */
+      width: 100%;        /* 画面が400px以下のときは画面に追従 */
       order: -1;
     }
   }
