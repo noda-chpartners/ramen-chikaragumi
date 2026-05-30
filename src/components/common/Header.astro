@@ -1,12 +1,52 @@
 ---
+import { Image } from 'astro:assets';
+
+import Logo from '../../assets/images/logo2.png';
 ---
 <header class="header">
-  <div class="inner">
-
+  <div class="header-inner">
+    <h1 class="logo">
+      <a href="/" class="logo-link">
+        <Image src={Logo} alt="フレックス湘南" />
+      </a>
+    </h1>
   </div>
 </header>
 
 <style lang="scss">
   @use "../../styles/variables" as *;
   @use "../../styles/mixins" as *;
+
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 110;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px 40px;
+
+    @include tb {
+      padding: 16px 20px;
+    }
+  }
+
+  .logo {
+    position: relative;
+    z-index: 10; // ドロワーより前面に出して常に見えるように
+    max-width: 150px;
+    height: auto;
+
+    @include tb {
+      max-width: 120px;
+    }
+  }
 </style>

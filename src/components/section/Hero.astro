@@ -10,7 +10,7 @@ const tab = await getImage({ src: tabHero, format: 'webp' });
 const sp = await getImage({ src: spHero, format: 'webp' });
 ---
 <section class="hero">
-  <div class="inner">
+  <div class="header-inner">
     <picture class="hero-picture">
       <source media="(max-width: 520px)" srcset={sp.src} />
       <source media="(max-width: 890px)" srcset={tab.src} />
@@ -42,6 +42,6 @@ const sp = await getImage({ src: spHero, format: 'webp' });
   }
 
   .hero-picture img {
-    will-change: transform;
+
   }
 </style>
