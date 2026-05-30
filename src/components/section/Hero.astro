@@ -10,7 +10,6 @@ const tab = await getImage({ src: tabHero, format: 'webp' });
 const sp = await getImage({ src: spHero, format: 'webp' });
 ---
 <section class="hero">
-  <div class="header-inner">
     <picture class="hero-picture">
       <source media="(max-width: 520px)" srcset={sp.src} />
       <source media="(max-width: 890px)" srcset={tab.src} />
@@ -20,7 +19,6 @@ const sp = await getImage({ src: spHero, format: 'webp' });
         data-hero-image
       />
     </picture>
-  </div>
 </section>
 
 <style lang="scss">
@@ -34,6 +32,9 @@ const sp = await getImage({ src: spHero, format: 'webp' });
     overflow: hidden;
   }
 
+
+  
+
   .hero-picture {
     display: block;
     width: 100%;
@@ -42,6 +43,7 @@ const sp = await getImage({ src: spHero, format: 'webp' });
   }
 
   .hero-picture img {
-
+    object-fit: cover;
+    object-position: center;
   }
 </style>
