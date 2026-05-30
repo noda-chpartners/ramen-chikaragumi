@@ -8,6 +8,53 @@ import infoBg from '../../assets/images/info-bg.jpeg';
     <div class="section-title">
       <h2 class="title">店舗情報</h2>
     </div>
+    <div class="content">
+      <div class="info-body">
+        <dl class="info-table">
+          <div class="info-row">
+            <dt class="info-label">店舗名</dt>
+            <dd class="info-data">初代組系ラーメン麵魂力組</dd>
+          </div>
+          <div class="info-row">
+            <dt class="info-label">電話番号</dt>
+            <dd class="info-data">
+              <a href="tel:09071624273" class="tel">090-7162-4273</a>
+            </dd>
+          </div>
+          <div class="info-row">
+            <dt class="info-label">住所</dt>
+            <dd class="info-data">
+              <address class="address">東京都千代田区飯田橋1-8-7<br class="break" />有田ビル1階</address>
+            </dd>
+          </div>
+          <div class="info-row">
+            <dt class="info-label">アクセス</dt>
+            <dd class="info-data">
+              飯田橋駅 徒歩7分<br />
+              九段下駅 徒歩7分
+            </dd>
+          </div>
+          <div class="info-row">
+            <dt class="info-label">営業時間</dt>
+            <dd class="info-data">
+              [平日] 11:30〜20:45（L.O.） 21:00閉店<br />
+              [土日祝] 11:30〜15:00
+            </dd>
+          </div>
+          <div class="info-row">
+            <dt class="info-label">定休日</dt>
+            <dd class="info-data">日曜</dd>
+          </div>
+          <div class="info-row">
+            <dt class="info-label">席数</dt>
+            <dd class="info-data">9席</dd>
+          </div>
+        </dl>
+        <figure class="info-image">
+          <Image src={ infoBg } alt="店舗の外観" />
+        </figure>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -17,5 +64,76 @@ import infoBg from '../../assets/images/info-bg.jpeg';
 
   .info {
     background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  .content {
+    margin-top: 80px;
+  }
+
+  .info-body {
+    display: flex;
+    gap: clamp(24px, 5vw, 80px);
+    align-items: flex-start;
+  }
+
+  .info-table {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .info-row {
+    display: flex;
+    gap: 24px;
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+    &:first-child {
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  .info-label {
+    flex: 0 0 6em;
+  }
+
+  .info-data {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .tel {
+    text-decoration: underline;
+  }
+
+  .info-image {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: 480px;
+  }
+
+  @include tb {
+    .info-body {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .info-image {
+      max-width: 100%;
+      order: -1;
+    }
+  }
+
+  @include sp {
+    .info-row {
+      flex-direction: column;
+      gap: 8px;
+      padding: 16px 0;
+    }
+
+    .info-label {
+      flex: none;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.85rem;
+    }
   }
 </style>
