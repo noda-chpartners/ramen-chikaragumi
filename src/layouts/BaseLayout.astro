@@ -7,11 +7,58 @@ import '../styles/global.scss';
 import Header from '../components/common/Header.astro';
 import Footer from '../components/common/Footer.astro';
 
+interface Props {
+  title?: string;
+  description?: string;
+  lang?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  noindex?: boolean;
+}
+
 const {
   title = siteConfig.title,
   description = siteConfig.description,
   lang = siteConfig.lang,
+  ogImage = siteConfig.ogImage,
+  ogType = 'website',
+  noindex = false,
 } = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, siteConfig.url).href;
+const ogImageUrl = new URL(ogImage, siteConfig.url).href;
+const twitterSite = siteConfig.sns.x.replace(/^https?:\/\/(www\.)?(twitter\.com|x\.com)\//, '@');
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Restaurant',
+  name: siteConfig.name,
+  description: siteConfig.description,
+  url: siteConfig.url,
+  image: ogImageUrl,
+  telephone: siteConfig.business.telephone,
+  priceRange: siteConfig.business.priceRange,
+  servesCuisine: siteConfig.business.servesCuisine,
+  address: {
+    '@type': 'PostalAddress',
+    postalCode: siteConfig.business.address.postalCode,
+    addressRegion: siteConfig.business.address.addressRegion,
+    addressLocality: siteConfig.business.address.addressLocality,
+    streetAddress: siteConfig.business.address.streetAddress,
+    addressCountry: 'JP',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: siteConfig.business.geo.latitude,
+    longitude: siteConfig.business.geo.longitude,
+  },
+  openingHoursSpecification: siteConfig.business.openingHours.map((hours) => ({
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: hours.dayOfWeek,
+    opens: hours.opens,
+    closes: hours.closes,
+  })),
+};
 ---
 
 <html lang={lang}>
@@ -21,27 +68,36 @@ const {
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-    <meta name="description" content={description} />
+		<meta name="format-detection" content="telephone=no" />
 
-    <link rel="canonical" href={`${siteConfig.url}${Astro.url.pathname}`} />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="keywords" content={siteConfig.keywords.join(', ')} />
+		<meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
 
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={`${siteConfig.url}${siteConfig.ogImage}`} />
-    <meta property="og:url" content={`${siteConfig.url}${Astro.url.pathname}`} />
-    <meta property="og:type" content="website" />
+		<link rel="canonical" href={canonicalUrl} />
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content={siteConfig.sns.x} />
-    <meta name="twitter:title" content={title}/>
-    <meta name="twitter:description" content={description} />
+		<meta property="og:site_name" content={siteConfig.name} />
+		<meta property="og:locale" content={siteConfig.locale} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={ogImageUrl} />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:type" content={ogType} />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho&display=swap" rel="stylesheet">
+		<meta name="twitter:card" content="summary_large_image" />
+		{twitterSite && <meta name="twitter:site" content={twitterSite} />}
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImageUrl} />
 
-    <script src="../scripts/animation.ts"></script>
+		<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho&display=swap" rel="stylesheet" />
+
+		<script src="../scripts/animation.ts"></script>
 	</head>
 	<body>
 		<Header />
@@ -62,8 +118,8 @@ const {
     inset: 0;
     z-index: -1;
     background-image: url('../assets/images/bg-image.png');
-    background-size: cover;       /* 画面幅を変えても見切れず埋める */
-    background-position: center;  /* 中央基準で拡縮 */
+    background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
   }
 </style>
