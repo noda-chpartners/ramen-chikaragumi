@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
+import { siteConfig } from '../../config/site';
 
 import infoBg from '../../assets/images/info-bg.jpeg';
 ---
@@ -53,8 +54,8 @@ import infoBg from '../../assets/images/info-bg.jpeg';
           <div class="info-row sns">
             <dt class="info-label">SNS</dt>
             <dd class="info-data">
-              <a href="" class="sns-link" target="_blank" rel="noopener noreferrer"><Icon name="simple-icons:x" /></a>
-              <a href="https://instagram.com/..." class="sns-link" target="_blank" rel="noopener noreferrer"><Icon name="simple-icons:instagram" /></a>
+              <a href={siteConfig.sns.x} class="sns-link" target="_blank" rel="noopener noreferrer"><Icon name="simple-icons:x" /></a>
+              <a href={siteConfig.sns.instagram} class="sns-link" target="_blank" rel="noopener noreferrer"><Icon name="simple-icons:instagram" /></a>
             </dd>
           </div>
         </dl>

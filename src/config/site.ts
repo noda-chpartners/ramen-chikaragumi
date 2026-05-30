@@ -24,8 +24,8 @@ export const siteConfig = {
     "東京 ラーメン",
   ],
   sns: {
-    x: "",
-    instagram: "",
+    x: "https://x.com/tikaragumi?s=11",
+    instagram: "https://www.instagram.com/tikaragumi?igsh=enNnYnRpbDRxbW1y&utm_source=qr",
   },
   /** 店舗情報（構造化データ・フッター等で参照） */
   business: {
