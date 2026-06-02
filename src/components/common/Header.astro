@@ -94,7 +94,7 @@ const telDisplay = '090-7162-4273';
 
   .logo {
     position: relative;
-    z-index: 10; // ドロワーより前面に出して常に見えるように
+    z-index: 120;
     max-width: 150px;
     height: auto;
 
@@ -174,7 +174,7 @@ const telDisplay = '090-7162-4273';
   .hamburger {
     display: none;
     position: relative;
-    z-index: 10;
+    z-index: 120;
     width: 32px;
     height: 24px;
     background: transparent;
@@ -202,13 +202,14 @@ const telDisplay = '090-7162-4273';
     .nav {
       position: fixed;
       inset: 0;
+      z-index: 100;
       flex-direction: column;
       justify-content: center;
       gap: 48px;
       background-color: rgba(0, 0, 0, 0.95);
-      // 閉じている状態
       opacity: 0;
       visibility: hidden;
+      pointer-events: none;
       transition: opacity 0.3s, visibility 0.3s;
     }
 
@@ -240,6 +241,7 @@ const telDisplay = '090-7162-4273';
     :global(body.is-nav-open) .nav {
       opacity: 1;
       visibility: visible;
+      pointer-events: auto;
     }
 
     /* ハンバーガー → ×印 */

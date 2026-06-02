@@ -29,7 +29,8 @@ const initAnimation = () => {
   if (prefersReducedMotion) {
     gsap.set(
       [
-        '.header',
+        '.header .logo',
+        '.header .hamburger',
         '[data-hero-image]',
         '.hero-copy-char',
         '.section-title',
@@ -54,7 +55,7 @@ const initAnimation = () => {
 
   const heroTimeline = gsap
     .timeline()
-    .from('.header', {
+    .from('.header .logo, .header .hamburger', {
       autoAlpha: 0,
       y: -24,
       duration: 0.8,
