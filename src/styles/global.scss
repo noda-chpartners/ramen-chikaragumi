@@ -4,7 +4,7 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: clip;
+  overflow-x: hidden;
 }
 
 body {
@@ -15,7 +15,7 @@ body {
 }
 
 main {
-  overflow-x: clip;
+  overflow-x: hidden;
 }
 
 img {
