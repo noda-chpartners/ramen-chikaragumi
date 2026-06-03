@@ -4,7 +4,7 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: clip;
+  overflow-x: hidden;
 }
 
 body {
@@ -12,6 +12,13 @@ body {
   color: #fff;
   font-size: 1rem;
   line-height: 1.8;
+  overflow-x: hidden;   /* ← 追加 */
+  position: relative;   /* ← 追加（保険） */
+  width: 100%;          /* ← 追加（保険） */
+}
+
+main {
+  overflow-x: hidden;
 }
 
 a {
