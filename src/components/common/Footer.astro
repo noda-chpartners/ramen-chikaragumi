@@ -17,6 +17,7 @@ const navLinks = [
     <div class="footer-brand">
       <a href="/" class="footer-logo">
         <Image src={Logo} alt={siteConfig.title} />
+        <span class="footer-logo-tagline">初代組系ラーメン</span>
       </a>
     </div>
 
@@ -70,8 +71,18 @@ const navLinks = [
   }
 
   .footer-logo {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
     max-width: 140px;
+  }
+
+  .footer-logo-tagline {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    white-space: nowrap;
   }
 
   .footer-nav-list {
