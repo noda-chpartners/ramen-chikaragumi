@@ -41,7 +41,7 @@ const sp = await getImage({ src: spHero, format: 'webp' });
           <span class="hero-copy-char">{char}</span>
         ))}
       </p>
-      <p class="hero-copy-line" aria-hidden="true">
+      <p class="hero-copy-line soul" aria-hidden="true">
         {'魂の一杯'.split('').map((char) => (
           <span class="hero-copy-char">{char}</span>
         ))}
@@ -112,6 +112,12 @@ const sp = await getImage({ src: spHero, format: 'webp' });
     line-height: 1;
     text-shadow: 0 4px 18px rgba(0, 0, 0, 0.75);
     white-space: nowrap;
+  }
+
+  .hero-copy-line.soul {
+    font-size: 2rem;
+    color: red;
+    text-shadow: 0 4px 8px rgba(255, 255, 255, 0.5);
   }
 
   .hero-copy-char {
