@@ -4,6 +4,7 @@ import { Icon } from 'astro-icon/components';
 import { siteConfig } from '../../config/site';
 
 import Logo from '../../assets/images/logo2.png';
+import Logo02 from '../../assets/images/deco.png';
 
 const navLinks = [
   { href: '#about', label: '当店について' },
@@ -19,8 +20,11 @@ const telDisplay = '090-7162-4273';
   <div class="header-inner">
     <h1 class="logo">
       <a href="/" class="logo-link">
-        <Image src={Logo} alt={siteConfig.title} />
-        <span class="logo-tagline">初代組系ラーメン</span>
+        <Image class="hata-logo" src={ Logo02 } alt="" />
+        <div class="taglink-wrap">
+          <span class="logo-tagline">初代組系ラーメン</span>
+          <Image class="logo-img" src={Logo} alt={siteConfig.title} />
+        </div>
       </a>
     </h1>
 
@@ -96,15 +100,22 @@ const telDisplay = '090-7162-4273';
   .logo {
     position: relative;
     z-index: 120;
-    max-width: 150px;
+    max-width: 200px;
     height: auto;
+  }
+
+  .hata-logo {
+    max-width: 80px;
+    width: 100%;
   }
 
   .logo-link {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
+  }
+
+  .logo-img {
+    max-width: 150px;
+
   }
 
   .logo-tagline {
@@ -112,6 +123,12 @@ const telDisplay = '090-7162-4273';
     letter-spacing: 0.08em;
     line-height: 1;
     white-space: nowrap;
+  }
+
+  .taglink-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   /* ===== PC: 横並びナビ ===== */
