@@ -4,6 +4,7 @@ import { Icon } from 'astro-icon/components';
 import { siteConfig } from '../../config/site';
 
 import Logo from '../../assets/images/logo2.png';
+import Logo02 from '../../assets/images/deco.png';
 
 const navLinks = [
   { href: '#about', label: '当店について' },
@@ -16,8 +17,11 @@ const navLinks = [
   <div class="footer-inner">
     <div class="footer-brand">
       <a href="/" class="footer-logo">
-        <Image src={Logo} alt={siteConfig.title} />
-        <span class="footer-logo-tagline">初代組系ラーメン</span>
+        <Image class="hata-logo" src={ Logo02 } alt="" />
+        <div class="taglink-wrap">
+          <span class="footer-logo-tagline">初代組系ラーメン</span>
+          <Image class="logo-img" src={Logo} alt={siteConfig.title} />
+        </div>
       </a>
     </div>
 
@@ -70,13 +74,29 @@ const navLinks = [
     }
   }
 
+  .footer-brand {
+    max-width: 200px;
+  }
+
   .footer-logo {
+  display: flex;
+    max-width: 140px;
+  }
+
+  .hata-logo {
+    max-width: 60px;
+    width: 100%;
+  }
+
+  .logo-img {
+    max-width: 150px;
+  }
+
+  .taglink-wrap {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
-    max-width: 140px;
-  }
+  } 
 
   .footer-logo-tagline {
     font-size: 0.7rem;
